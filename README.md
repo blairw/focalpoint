@@ -5,4 +5,4 @@ This is a web page / web app that provides a painfully simple *Kanban* board. Th
 
 It's built on top of [Bootstrap](http://getbootstrap.com/javascript/). Since there is no database server attached, data persistence comes in the form of JSON import/export buttons provided using [FileSaver.js](https://github.com/eligrey/FileSaver.js/).
 
-See it live at http://blairwang.id.au/focalpoint
+See it live at http://blairwang.id.au/focalpoint/
