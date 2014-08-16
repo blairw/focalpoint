@@ -1,0 +1,27 @@
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#inputSlot1, #inputSlot2, #inputSlot3 {
+	width: 100%;
+	font-size: 200%;
+	height: 200%;
+	color: rgb(0,101,189);
+	background-color: rgba(0,101,189,0.1);
+}
+
+textarea {
+	width: 100%;
+}
+
+#blairWrapper {
+	padding: 1%;
+}
+
+#inputSlot1 {
+	font-weight: bold;
+}
+
+#inputSlot3 {
+	margin-top: 10px;
+}

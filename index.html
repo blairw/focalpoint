@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>focalpoint</title>
+		<meta charset="UTF-8">
+		<!-- presentation -->
+		<link rel="icon" type="image/png" href="lib/fugue/clipboard-search-result.png" />
+		<link rel="stylesheet" href="lib/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="lib/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="style.css">
+		<!-- logic -->
+		<script src="lib/jquery.min.js"></script>
+		<script src="lib/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+		<script src="lib/Blob.js"></script>
+		<script src="lib/FileSaver.js"></script>
+		<script src="controller.js"></script>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-53150780-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+	</head>
+	<body onload="init()">
+		<div class="modal" id="divModalUpload" tabindex="-1" role="dialog" aria-labelledby="divModalUploadLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h3 class="modal-title" id="divModalUploadLabel">Open JSON file</h3>
+					</div>
+					<div class="modal-body">
+						<div class="container">
+							<input type="file" id="file" onchange="upload()" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<strong><a class="navbar-brand" href="#">focalpoint</a></strong>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<span class="navbar-form navbar-left">
+						<div class="form-group">
+							<span class="input-group">
+								<input type="text" id="inputDocumentTitle"
+									onchange="pullDocumentTitleFromInput()"
+									class="form-control" placeholder="Document title">
+								<span class="input-group-addon">.json</span>
+							</span>
+						</div>
+						&nbsp;
+						<div class="btn-group">
+							<button class="btn btn-default" onclick="showModalUpload()" id="buttonUpload">
+								<div class="glyphicon glyphicon-folder-open"></div>&nbsp;&nbsp;Open
+							</button>
+							<button class="btn btn-default" onclick="download()" id="buttonDownload">
+								<div class="glyphicon glyphicon-floppy-disk"></div>&nbsp;&nbsp;Save
+							</button>
+							<button class="btn btn-default" onclick="refreshGui()" id="buttonRefresh">
+								<div class="glyphicon glyphicon-refresh"></div>&nbsp;&nbsp;Reset
+							</button></div>
+					</span>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">version 14.081501 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="http://blairwang.id.au/">Blair Wang</a></li>
+								<li class="divider"></li>
+								<li><a href="http://getbootstrap.com/">Bootstrap 3.2.0</a></li>
+								<li><a href="http://p.yusukekamiyamane.com/">Fugue 3.5.6</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+		<div id="blairWrapper">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><strong>In Progress</strong></div>
+						<div class="panel-body">
+							<p><strong>What are you working on?</strong></p>
+							<input class="form-control" type="text" id="inputSlot1"
+								placeholder="Slot 1" />
+							&nbsp;
+							<p><strong>Anything else?</strong></p>	
+							<input class="form-control" type="text" id="inputSlot2"
+								placeholder="Slot 2 (strong multitasking)" />
+							<input class="form-control" type="text" id="inputSlot3"
+								placeholder="Slot 3 (wow!)" />
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-warning">
+						<div class="panel-heading"><strong>Pending</strong></div>
+						<div class="panel-body">
+							<p>
+								What's in your queue?
+							</p>
+							<textarea class="form-control" id="textareaInQueue"
+								rows="8" placeholder="Your queue goes here"></textarea>
+						</div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading"><strong>Done</strong></div>
+						<div class="panel-body">
+							<p>
+								Hooray, you finished stuff!
+							</p>
+							<textarea class="form-control" id="textareaDone"
+								rows="3" placeholder="Move stuff here when it is done"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
